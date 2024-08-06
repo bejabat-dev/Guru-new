@@ -96,9 +96,8 @@ class _HomeScreenState extends State<AturJadwal> {
 
   void load() async {
     data = await networking.getJadwal();
-    if(mounted){
-
-    setState(() {});
+    if (mounted) {
+      setState(() {});
     }
   }
 
@@ -165,7 +164,7 @@ class _HomeScreenState extends State<AturJadwal> {
           ),
           const Text(
             'Tekan untuk menghapus jadwal',
-            style: TextStyle(color:  Color.fromARGB(255, 123, 123, 123)),
+            style: TextStyle(color: Color.fromARGB(255, 123, 123, 123)),
           )
         ],
       ),

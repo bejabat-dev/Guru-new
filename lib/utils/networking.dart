@@ -97,7 +97,9 @@ class Networking {
       if (res.statusCode == 200) {
         Userdata.data = res.data;
       }
-    } catch (e) {}
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   Future<String?> getToken(String documentId) async {
@@ -255,7 +257,9 @@ class Networking {
   Future<void> updateOrder(BuildContext context, dynamic data) async {
     final res = await dio.post('$baseUrl/update/order', data: data);
     if (res.statusCode == 200) {
-      utils.NavigateAndClear(context, const DashboardGuru(index: 0));
+      if (context.mounted) {
+        utils.NavigateAndClear(context, const DashboardGuru(index: 0));
+      }
     }
   }
 
@@ -310,11 +314,13 @@ class Networking {
     if (res.statusCode == 200) {
       if (context.mounted) {
         await refreshData(context, Userdata.data['email']);
-        utils.NavigateAndClear(
-            context,
-            const DashboardGuru(
-              index: 3,
-            ));
+        if (context.mounted) {
+          utils.NavigateAndClear(
+              context,
+              const DashboardGuru(
+                index: 3,
+              ));
+        }
       }
     }
   }
@@ -325,11 +331,13 @@ class Networking {
     if (res.statusCode == 200) {
       if (context.mounted) {
         await refreshData(context, Userdata.data['email']);
-        utils.NavigateAndClear(
-            context,
-            const DashboardSiswa(
-              index: 3,
-            ));
+        if (context.mounted) {
+          utils.NavigateAndClear(
+              context,
+              const DashboardSiswa(
+                index: 3,
+              ));
+        }
       }
     }
   }

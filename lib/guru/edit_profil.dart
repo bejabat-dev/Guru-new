@@ -17,9 +17,6 @@ class EditProfilGuru extends StatefulWidget {
 }
 
 class _EditProfilGuruState extends State<EditProfilGuru> {
-
-
-  
   final formKey = GlobalKey<FormState>();
   String foto = Userdata.data['foto_profil'];
 
@@ -38,7 +35,6 @@ class _EditProfilGuruState extends State<EditProfilGuru> {
     return map;
   }
 
-
   String selectedMapel = Userdata.data['mata_pelajaran'];
 
   void loadMapel() async {
@@ -47,9 +43,8 @@ class _EditProfilGuruState extends State<EditProfilGuru> {
       mapel.add(map['deskripsi']);
     }
     if (Userdata.data['mata_pelajaran'] == 'Belum disetel') {
-      if(mapel.isNotEmpty){
-        
-      selectedMapel = mapel[0];
+      if (mapel.isNotEmpty) {
+        selectedMapel = mapel[0];
       }
     }
     setState(() {});
@@ -62,7 +57,7 @@ class _EditProfilGuruState extends State<EditProfilGuru> {
       return const CupertinoActivityIndicator();
     } else {
       return InkWell(
-        onTap: (){
+        onTap: () {
           _pickImage();
         },
         child: const Icon(
@@ -96,7 +91,7 @@ class _EditProfilGuruState extends State<EditProfilGuru> {
 
     FormData formData = FormData.fromMap({
       "deskripsi": Userdata.data['email'],
-      "email":Userdata.data['email'],
+      "email": Userdata.data['email'],
       "image": await MultipartFile.fromFile(_image!.path, filename: fileName),
     });
 
@@ -107,11 +102,15 @@ class _EditProfilGuruState extends State<EditProfilGuru> {
       );
 
       if (response.statusCode == 200) {
-        await Networking().refreshData(context, Userdata.data['email']);
+        if (context.mounted) {
+          await Networking().refreshData(context, Userdata.data['email']);
+        }
         setState(() {
           foto = Userdata.data['foto_profil'];
         });
-        Tools().NavigateAndClear(context, const EditProfilGuru());
+        if (context.mounted) {
+          Tools().NavigateAndClear(context, const EditProfilGuru());
+        }
       } else {
         debugPrint('Failed to upload image');
       }
@@ -154,16 +153,16 @@ class _EditProfilGuruState extends State<EditProfilGuru> {
               foto != 'default'
                   ? ClipOval(
                       child: InkWell(
-                        onTap: (){
-                          _pickImage();
-                        },
-                        child: Image.network(
+                      onTap: () {
+                        _pickImage();
+                      },
+                      child: Image.network(
                         foto,
                         height: 85,
                         width: 85,
                         fit: BoxFit.cover,
-                                            ),
-                      ))
+                      ),
+                    ))
                   : indicator(),
               const SizedBox(
                 height: 8,
@@ -222,11 +221,11 @@ class _EditProfilGuruState extends State<EditProfilGuru> {
                         selectedMapel = value!;
                       })
                   : const Column(
-                    children: [
-                       CupertinoActivityIndicator(),
-                      Text('Memuat mata pelajaran'),
-                    ],
-                  )
+                      children: [
+                        CupertinoActivityIndicator(),
+                        Text('Memuat mata pelajaran'),
+                      ],
+                    )
             ],
           ),
         ),
