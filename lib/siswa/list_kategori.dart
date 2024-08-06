@@ -4,7 +4,7 @@ import 'package:guru_booking/utils/networking.dart';
 import 'package:guru_booking/utils/tools.dart';
 
 class ListKategoriSiswa extends StatefulWidget {
-  const ListKategoriSiswa({super.key,required this.deskripsi});
+  const ListKategoriSiswa({super.key, required this.deskripsi});
   final String deskripsi;
 
   @override
@@ -16,10 +16,9 @@ class _DaftarSiswaState extends State<ListKategoriSiswa> {
   List<dynamic> data = [];
 
   void load() async {
-    data = await networking.getKategoriSiswa({'mapel':widget.deskripsi});
-    if(mounted){
-
-    setState(() {});
+    data = await networking.getKategoriSiswa({'mapel': widget.deskripsi});
+    if (mounted) {
+      setState(() {});
     }
   }
 
@@ -57,14 +56,20 @@ class _DaftarSiswaState extends State<ListKategoriSiswa> {
                 elevation: 2,
                 child: InkWell(
                   onTap: () {
-                    Tools().Navigate(context, Rincian(title: data[i]['nama'],data: data[i],));
+                    Tools().Navigate(
+                        context,
+                        Rincian(
+                          title: data[i]['nama'],
+                          data: data[i],
+                        ));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
                         foto != 'default'
-                            ? Image.network(data[i]['foto_profil'],height:100,width:120)
+                            ? Image.network(data[i]['foto_profil'],
+                                height: 100, width: 120, fit: BoxFit.cover)
                             : Container(
                                 decoration: BoxDecoration(border: Border.all()),
                                 height: 120,
