@@ -131,7 +131,7 @@ class _DaftarSiswaState extends State<HomeSiswa> {
                 ),
               ),
             );
-          }):Center(
+          }):const Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

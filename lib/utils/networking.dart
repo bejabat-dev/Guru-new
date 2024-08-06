@@ -128,7 +128,7 @@ class Networking {
       if (res.statusCode == 200) {
         String token = await fcm.getToken() as String;
         await db.doc(email).set({'token': token}).catchError((e) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text('Terjadi kesalahan'),
             duration: Duration(seconds: 2),
           ));
@@ -255,7 +255,7 @@ class Networking {
   Future<void> updateOrder(BuildContext context, dynamic data) async {
     final res = await dio.post('$baseUrl/update/order', data: data);
     if (res.statusCode == 200) {
-      utils.NavigateAndClear(context, DashboardGuru(index: 0));
+      utils.NavigateAndClear(context, const DashboardGuru(index: 0));
     }
   }
 

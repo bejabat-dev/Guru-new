@@ -33,7 +33,7 @@ class _RincianGuruState extends State<RincianGuru> {
               decoration: BoxDecoration(border: Border.all()),
               height: 320,
               width: 250,
-              child: Center(
+              child: const Center(
                 child: Text('Tidak ada foto'),
               ),
             ),
@@ -41,7 +41,7 @@ class _RincianGuruState extends State<RincianGuru> {
               width: double.infinity,
               child: Text(
                 data['nama_siswa'],
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(
@@ -49,7 +49,7 @@ class _RincianGuruState extends State<RincianGuru> {
             ),
             Row(
               children: [
-                Expanded(
+                const Expanded(
                     child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
