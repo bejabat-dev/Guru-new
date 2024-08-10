@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:guru_booking/utils/networking.dart';
 import 'package:guru_booking/utils/styles.dart';
 import 'package:intl/intl.dart';
 
@@ -29,23 +30,22 @@ class Tools {
   }
 
   void showError(BuildContext context, String message) {
-  showDialog(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: const Text('Error'),
-      content: Text(message),
-      actions: [
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: const Text('Konfirmasi'),
-        ),
-      ],
-    ),
-  );
-}
-
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Error'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('Konfirmasi'),
+          ),
+        ],
+      ),
+    );
+  }
 
   void Navigate(BuildContext context, Widget widget) {
     Navigator.push(context, MaterialPageRoute(builder: (route) => widget));
@@ -56,8 +56,9 @@ class Tools {
         MaterialPageRoute(builder: (route) => widget), (route) => false);
   }
 
-  void NavigateReplace(BuildContext context,Widget widget){
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>widget));
+  void NavigateReplace(BuildContext context, Widget widget) {
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => widget));
   }
 
   void showCustomDialog(BuildContext context, String text) {
@@ -153,13 +154,43 @@ class Tools {
           );
         });
   }
+
   String formatRupiah(int amount) {
-  final formatter = NumberFormat.currency(
-    locale: 'id_ID', 
-    symbol: 'Rp', 
-    decimalDigits: 0,
-  );
-  return formatter.format(amount);
-}
-  
+    final formatter = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp',
+      decimalDigits: 0,
+    );
+    return formatter.format(amount);
+  }
+
+  void showConfirmDialog(
+      BuildContext context, String judul, String jenis, int id) {
+    showDialog(
+        context: (context),
+        builder: (context) {
+          return AlertDialog(
+            content: Text(judul),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Batal')),
+              TextButton(
+                  onPressed: () async {
+                    if (jenis == 'siswa') {
+                      Networking().deleteSiswa(context, {'id': id});
+                    } else if (jenis == 'guru') {
+                      await Networking().deleteGuru(context, {'id': id});
+                    }
+                  },
+                  child: Text(
+                    'Hapus',
+                    style: TextStyle(color: Colors.red),
+                  ))
+            ],
+          );
+        });
+  }
 }

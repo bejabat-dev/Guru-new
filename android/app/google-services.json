@@ -10,6 +10,25 @@
       "client_info": {
         "mobilesdk_app_id": "1:842214022631:android:0ffd7aca4adf417d163142",
         "android_client_info": {
+          "package_name": "com.exam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfNfrr9SvTr9ttHfMGmQDVTVTbmqzcbRk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842214022631:android:64b8ea07d593ece4163142",
+        "android_client_info": {
           "package_name": "com.example.guru_booking"
         }
       },

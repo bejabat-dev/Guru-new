@@ -21,6 +21,10 @@ class _DaftarSiswaState extends State<DaftarSiswa> {
     }
   }
 
+  void delete(int id) async {
+    Tools().showConfirmDialog(context,  'Hapus siswa ?', 'siswa', id);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -46,12 +50,17 @@ class _DaftarSiswaState extends State<DaftarSiswa> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           foto != 'default'
-                              ? Image.network(data[i]['foto_profil'],width: 100,height: 120,fit: BoxFit.cover,)
+                              ? Image.network(
+                                  data[i]['foto_profil'],
+                                  width: 80,
+                                  height: 120,
+                                  fit: BoxFit.cover,
+                                )
                               : Container(
                                   decoration:
                                       BoxDecoration(border: Border.all()),
                                   height: 120,
-                                  width: 100,
+                                  width: 80,
                                   child: const Center(
                                       child: Text('Tidak ada\nfoto profil'))),
                           Expanded(
@@ -64,6 +73,7 @@ class _DaftarSiswaState extends State<DaftarSiswa> {
                                   Text(
                                     data[i]['nama'],
                                     style: const TextStyle(
+                                        overflow: TextOverflow.ellipsis,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   const SizedBox(
@@ -75,7 +85,9 @@ class _DaftarSiswaState extends State<DaftarSiswa> {
                                         padding: EdgeInsets.only(right: 4),
                                         child: Icon(Icons.mail),
                                       ),
-                                      Text(data[i]['email']),
+                                      Text(
+                                          overflow: TextOverflow.ellipsis,
+                                          data[i]['email']),
                                     ],
                                   ),
                                   Row(
@@ -84,7 +96,9 @@ class _DaftarSiswaState extends State<DaftarSiswa> {
                                         padding: EdgeInsets.only(right: 4),
                                         child: Icon(Icons.place),
                                       ),
-                                      Text(data[i]['alamat']),
+                                      Text(
+                                          overflow: TextOverflow.ellipsis,
+                                          data[i]['alamat']),
                                     ],
                                   ),
                                   Row(
@@ -93,7 +107,9 @@ class _DaftarSiswaState extends State<DaftarSiswa> {
                                         padding: EdgeInsets.only(right: 4),
                                         child: Icon(Icons.phone_android),
                                       ),
-                                      Text(data[i]['nohp']),
+                                      Text(
+                                          overflow: TextOverflow.ellipsis,
+                                          data[i]['nohp']),
                                     ],
                                   ),
                                 ],
@@ -105,7 +121,9 @@ class _DaftarSiswaState extends State<DaftarSiswa> {
                               elevation: 2,
                               color: Colors.red,
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  delete(data[i]['id']);
+                                },
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child:
@@ -119,7 +137,8 @@ class _DaftarSiswaState extends State<DaftarSiswa> {
                 );
               })
           : const Center(
-              child: Column(mainAxisAlignment: MainAxisAlignment.center,
+              child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [CupertinoActivityIndicator(), Text('Memuat')],
             )),
     );

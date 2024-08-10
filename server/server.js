@@ -51,7 +51,7 @@ router.post('/upload/foto', upload.single('image'), async (req, res) => {
     const fileUrl = `${baseUrl}/uploads/${req.file.filename}`;
     const updateQuery = 'UPDATE users SET foto_profil = ? WHERE email = ?';
 
-    await db.query(updateQuery, [fileUrl,email]);
+    await db.query(updateQuery, [fileUrl, email]);
     res.status(200).json({ message: 'Success' });
   }
 
@@ -66,13 +66,13 @@ router.post('/upload/mapel', upload.single('image'), async (req, res) => {
     return res.status(400).json({ message: 'No file uploaded' });
   }
 
-  const { deskripsi,tarif } = req.body;
+  const { deskripsi, tarif } = req.body;
 
   try {
     const fileUrl = `${baseUrl}/uploads/${req.file.filename}`;
     const updateQuery = 'INSERT INTO mata_pelajaran (deskripsi,tarif,icon) VALUES (?,?,?)';
 
-    await db.query(updateQuery, [deskripsi,tarif,fileUrl]);
+    await db.query(updateQuery, [deskripsi, tarif, fileUrl]);
     res.status(200).json({ message: 'Success' });
   }
 
@@ -82,16 +82,16 @@ router.post('/upload/mapel', upload.single('image'), async (req, res) => {
   }
 });
 
-router.post('/mapel/delete',async (req,res)=>{
-const {id} = req.body;
-try{
-  const query = 'DELETE FROM mata_pelajaran WHERE id = ?';
-  await db.query(query,[id]);
-  res.status(200).json({message: 'Success'});
-}catch(e){
-  console.error(e);
-  return res.status(500).json({message: 'Error'});
-}
+router.post('/mapel/delete', async (req, res) => {
+  const { id } = req.body;
+  try {
+    const query = 'DELETE FROM mata_pelajaran WHERE id = ?';
+    await db.query(query, [id]);
+    res.status(200).json({ message: 'Success' });
+  } catch (e) {
+    console.error(e);
+    return res.status(500).json({ message: 'Error' });
+  }
 });
 
 router.get('/user', async (req, res) => {
@@ -146,16 +146,16 @@ router.get('/jadwal', async (req, res) => {
 });
 
 router.post('/jadwal', async (req, res) => {
-  const { id,tanggal } = req.body;
+  const { id, tanggal } = req.body;
 
   try {
     const query = 'INSERT INTO jadwal (id_guru,tanggal) VALUES (?,?)';
-    await db.query(query, [id,tanggal]);
+    await db.query(query, [id, tanggal]);
 
-    res.status(200).json({message:'Success'});
+    res.status(200).json({ message: 'Success' });
   } catch (e) {
     console.error(e);
-    res.status(500).json({message:'Failed'});
+    res.status(500).json({ message: 'Failed' });
   }
 });
 
@@ -166,10 +166,10 @@ router.delete('/jadwal', async (req, res) => {
     const query = 'DELETE FROM jadwal WHERE id = ?';
     await db.query(query, [id]);
 
-    res.status(200).json({message:'Success'});
+    res.status(200).json({ message: 'Success' });
   } catch (e) {
     console.error(e);
-    res.status(500).json({message:'Failed'});
+    res.status(500).json({ message: 'Failed' });
   }
 });
 
@@ -190,7 +190,7 @@ router.get('/user/siswa', async (req, res) => {
 });
 
 router.get('/jadwal/guru', async (req, res) => {
-  const {id} = req.body;
+  const { id } = req.body;
   try {
     const query = 'SELECT * FROM booking WHERE id_guru = ?';
     await db.query(query, [id]);
@@ -202,10 +202,10 @@ router.get('/jadwal/guru', async (req, res) => {
 });
 
 router.post('/order', async (req, res) => {
-  const{id_siswa,id_guru,nama_siswa,nama_guru,mata_pelajaran,tarif,tanggal,status} = req.body;
+  const { id_siswa, id_guru, nama_siswa, nama_guru, mata_pelajaran, tarif, tanggal, status } = req.body;
   try {
     const query = 'INSERT INTO booking (id_siswa,id_guru,nama_siswa,nama_guru,mata_pelajaran,tarif,tanggal,status) VALUES(?,?,?,?,?,?,?,?)';
-    await db.query(query,[id_siswa,id_guru,nama_siswa,nama_guru,mata_pelajaran,tarif,tanggal,status] );
+    await db.query(query, [id_siswa, id_guru, nama_siswa, nama_guru, mata_pelajaran, tarif, tanggal, status]);
     res.status(200).json();
   } catch (e) {
     console.error(e);
@@ -214,11 +214,11 @@ router.post('/order', async (req, res) => {
 });
 
 router.get('/order/guru', async (req, res) => {
-  const{id} = req.body;
+  const { id } = req.body;
   try {
     const query = 'SELECT * FROM booking WHERE id_guru = ?';
-    const [rows] = await db.query(query,[id] );
-    
+    const [rows] = await db.query(query, [id]);
+
     res.status(200).json(rows);
   } catch (e) {
     console.error(e);
@@ -227,12 +227,12 @@ router.get('/order/guru', async (req, res) => {
 });
 
 router.get('/riwayat/guru', async (req, res) => {
-  const{id} = req.body;
+  const { id } = req.body;
   const stat = 'Menunggu konfirmasi';
   try {
     const query = 'SELECT * FROM booking WHERE id_guru = ? AND status != ?';
-    const [rows] = await db.query(query,[id,stat] );
-    
+    const [rows] = await db.query(query, [id, stat]);
+
     res.status(200).json(rows);
   } catch (e) {
     console.error(e);
@@ -241,11 +241,11 @@ router.get('/riwayat/guru', async (req, res) => {
 });
 
 router.post('/update/order', async (req, res) => {
-  const{id,stat} = req.body;
+  const { id, stat } = req.body;
   try {
     const query = 'UPDATE booking SET status = ? WHERE id = ?';
-     await db.query(query,[stat,id] );
-    
+    await db.query(query, [stat, id]);
+
     res.status(200).json();
   } catch (e) {
     console.error(e);
@@ -254,11 +254,11 @@ router.post('/update/order', async (req, res) => {
 });
 
 router.get('/order', async (req, res) => {
-  const{id_siswa} = req.body;
+  const { id_siswa } = req.body;
   try {
     const query = 'SELECT * FROM booking WHERE id_siswa = ?';
-    const [rows] = await db.query(query,[id_siswa] );
-    
+    const [rows] = await db.query(query, [id_siswa]);
+
     res.status(200).json(rows);
   } catch (e) {
     console.error(e);
@@ -271,10 +271,10 @@ router.get('/user/guru', async (req, res) => {
   const mapel = 'Belum disetel';
   try {
     const query = 'SELECT * FROM users WHERE role = ? AND mata_pelajaran != ?';
-    const [rows] = await db.query(query, [role,mapel]);
+    const [rows] = await db.query(query, [role, mapel]);
 
     if (rows === 0) {
-      return res.status(404).json({message:'Empty'})
+      return res.status(404).json({ message: 'Empty' })
     }
 
     res.status(200).json(rows);
@@ -363,6 +363,26 @@ router.post('/user/updateguru', async (req, res) => {
   } catch (e) {
     console.error(e);
     return res.status(500);
+  }
+});
+
+router.post('/siswa/delete', async (req, res) => {
+  const { id } = req.body;
+  try {
+    await db.query('DELETE FROM users WHERE id=?',[id]);
+    res.status(200).json('Ok');
+  } catch (e) {
+    return res.status(500).json('error');
+  }
+});
+
+router.post('/guru/delete', async (req, res) => {
+  const { id } = req.body;
+  try {
+    await db.query('DELETE FROM users WHERE id=?',[id]);
+    res.status(200).json('Ok');
+  } catch (e) {
+    return res.status(500).json('error');
   }
 });
 

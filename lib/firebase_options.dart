@@ -62,10 +62,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBfNfrr9SvTr9ttHfMGmQDVTVTbmqzcbRk',
-    appId: '1:842214022631:android:0ffd7aca4adf417d163142',
+    appId: '1:842214022631:android:64b8ea07d593ece4163142',
     messagingSenderId: '842214022631',
     projectId: 'guru-booking',
     databaseURL: 'https://guru-booking-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'guru-booking.appspot.com',
   );
+
 }

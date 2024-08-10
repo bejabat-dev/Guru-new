@@ -356,6 +356,34 @@ class Networking {
     }
   }
 
+  Future<void> deleteSiswa(
+      BuildContext context, Map<String, dynamic> data) async {
+    final res = await dio.post('$baseUrl/siswa/delete', data: data);
+    if (res.statusCode == 200) {
+      if (context.mounted) {
+        utils.NavigateAndClear(
+            context,
+            const DashboardAdmin(
+              index: 0,
+            ));
+      }
+    }
+  }
+
+  Future<void> deleteGuru(
+      BuildContext context, Map<String, dynamic> data) async {
+    final res = await dio.post('$baseUrl/guru/delete', data: data);
+    if (res.statusCode == 200) {
+      if (context.mounted) {
+        utils.NavigateAndClear(
+            context,
+            const DashboardAdmin(
+              index: 1,
+            ));
+      }
+    }
+  }
+
   void logout(BuildContext context) {
     Userdata.prefs!.setBool('loggedin', false);
     utils.NavigateAndClear(context, const Login());

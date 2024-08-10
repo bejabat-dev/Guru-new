@@ -21,6 +21,10 @@ class _DaftarSiswaState extends State<DaftarGuru> {
     }
   }
 
+  void delete(int id) async {
+    Tools().showConfirmDialog(context, 'Hapus guru ?', 'guru', id);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -46,9 +50,12 @@ class _DaftarSiswaState extends State<DaftarGuru> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           foto != 'default'
-                              ? Image.network(data[i]['foto_profil'],
+                              ? Image.network(
+                                  data[i]['foto_profil'],
                                   height: 120,
-                                  width: 100,fit: BoxFit.cover,)
+                                  width: 100,
+                                  fit: BoxFit.cover,
+                                )
                               : Container(
                                   decoration:
                                       BoxDecoration(border: Border.all()),
@@ -107,7 +114,9 @@ class _DaftarSiswaState extends State<DaftarGuru> {
                               elevation: 2,
                               color: Colors.red,
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  delete(data[i]['id']);
+                                },
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child:
@@ -121,7 +130,8 @@ class _DaftarSiswaState extends State<DaftarGuru> {
                 );
               })
           : const Center(
-              child: Column(mainAxisAlignment: MainAxisAlignment.center,
+              child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [CupertinoActivityIndicator(), Text('Memuat')],
             )),
     );
