@@ -38,7 +38,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-const baseUrl = 'http://192.168.1.2:3000/guruku';
+const baseUrl = 'http://127.0.0.1:3000/guruku';
 
 router.post('/upload/foto', upload.single('image'), async (req, res) => {
   if (!req.file) {

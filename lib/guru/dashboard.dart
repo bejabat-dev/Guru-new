@@ -53,7 +53,7 @@ class _DashboardGuruState extends State<DashboardGuru> {
       body: widgets.elementAt(currentIndex),
       
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.white,
           onTap: selectIndex,
           currentIndex: currentIndex,
           items: const [

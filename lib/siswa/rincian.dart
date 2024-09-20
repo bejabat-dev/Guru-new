@@ -1,4 +1,4 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
+
 import 'package:flutter/material.dart';
 import 'package:guru_booking/admin/dashboard.dart';
 import 'package:guru_booking/utils/networking.dart';
@@ -15,7 +15,6 @@ class Rincian extends StatefulWidget {
 }
 
 class _RincianState extends State<Rincian> {
-  final fcm = FirebaseMessaging.instance;
   List<String> jadwal = [];
   List<dynamic> dataJadwal = [];
   String selectedJadwal = '';

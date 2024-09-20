@@ -1,6 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:dio/dio.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:guru_booking/admin/dashboard.dart';
 import 'package:guru_booking/auth/login.dart';
@@ -14,7 +13,7 @@ class Networking {
   final dio = Dio();
   final utils = Tools();
 
-  final baseUrl = 'https://thorn-horn-sandalwood.glitch.me/guruku';
+  final baseUrl = 'http://localhost:3000/guruku';
 
   Future<void> checkLogin(BuildContext context) async {
     if (Userdata.prefs!.getBool('loggedin') == true) {
@@ -45,7 +44,7 @@ class Networking {
           utils.showErrorDialog(context, 'Email sudah digunakan');
         } else {
           utils.showErrorDialog(
-              context, 'Terjadi kesalahan, periksa koneksi internet');
+              context, e.toString());
         }
       }
     }
@@ -102,40 +101,11 @@ class Networking {
     }
   }
 
-  Future<String?> getToken(String documentId) async {
-    try {
-      DocumentReference documentRef =
-          FirebaseFirestore.instance.collection('tokens').doc(documentId);
-      DocumentSnapshot documentSnapshot = await documentRef.get();
-
-      if (documentSnapshot.exists) {
-        Map<String, dynamic>? data =
-            documentSnapshot.data() as Map<String, dynamic>?;
-        return data?['token'] as String?;
-      } else {
-        debugPrint('Document does not exist');
-        return null;
-      }
-    } catch (e) {
-      debugPrint('Error fetching data: $e');
-      return null;
-    }
-  }
-
   Future<void> getUserData(BuildContext context, String email) async {
-    final fcm = FirebaseMessaging.instance;
-    final db = FirebaseFirestore.instance.collection('tokens');
     try {
       final res = await dio.get('$baseUrl/user', data: {'email': email});
       if (res.statusCode == 200) {
-        String token = await fcm.getToken() as String;
-        await db.doc(email).set({'token': token}).catchError((e) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text('Terjadi kesalahan'),
-            duration: Duration(seconds: 2),
-          ));
-          return;
-        });
+     
         Userdata.data = res.data;
         Userdata.prefs!.setString('email', email);
         Userdata.prefs!.setBool('loggedin', true);
