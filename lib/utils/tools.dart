@@ -176,7 +176,7 @@ class Tools {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text('Batal')),
+                  child: const Text('Batal')),
               TextButton(
                   onPressed: () async {
                     if (jenis == 'siswa') {
@@ -185,7 +185,7 @@ class Tools {
                       await Networking().deleteGuru(context, {'id': id});
                     }
                   },
-                  child: Text(
+                  child: const Text(
                     'Hapus',
                     style: TextStyle(color: Colors.red),
                   ))
