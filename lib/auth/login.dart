@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:guru_booking/auth/forgot.dart';
 import 'package:guru_booking/auth/register.dart';
 import 'package:guru_booking/utils/networking.dart';
 import 'package:guru_booking/utils/styles.dart';
