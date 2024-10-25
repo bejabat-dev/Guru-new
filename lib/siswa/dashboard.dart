@@ -60,7 +60,8 @@ class _DashboardState extends State<DashboardSiswa> {
   Widget build(BuildContext context) {
     return Scaffold(appBar: myAppBar(selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
+      
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
           BottomNavigationBarItem(icon: Icon(Icons.apps), label: 'Kategori'),

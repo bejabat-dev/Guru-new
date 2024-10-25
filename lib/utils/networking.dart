@@ -13,7 +13,7 @@ class Networking {
   final dio = Dio();
   final utils = Tools();
 
-  final baseUrl = 'http://localhost:3000/guruku';
+  final baseUrl = 'http://sifodsinterflour.my.id/api';
 
   Future<void> checkLogin(BuildContext context) async {
     if (Userdata.prefs!.getBool('loggedin') == true) {

@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sifodsin_guruku`
+-- Database: `sifodsin_api`
 --
 
 -- --------------------------------------------------------
@@ -84,7 +84,7 @@ CREATE TABLE `mata_pelajaran` (
 --
 
 INSERT INTO `mata_pelajaran` (`id`, `deskripsi`, `tarif`, `icon`) VALUES
-(7, 'Ilmu Komputer', 175000, 'http://127.0.0.1:3000/guruku/uploads/Ilmu Komputer.png');
+(7, 'Ilmu Komputer', 175000, 'http://sifodsinterflour.my.id/api/uploads/Ilmu Komputer.png');
 
 -- --------------------------------------------------------
 
@@ -122,10 +122,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `mata_pelajaran`, `nama`, `email`, `role`, `password`, `nohp`, `kualifikasi`, `alamat`, `foto_profil`) VALUES
-(4, 'Matematika', 'Novan', 'novan@gmail.com', 'Siswa', '$2b$10$PiM9kdGE2ocqVu.1Z6KLxumGZL0t36el3OeCeIoNpEH3MR5hP2AG.', '0857123213', NULL, 'Bengkong sadai', 'http://127.0.0.1:3000/guruku/uploads/novan@gmail.com.png'),
+(4, 'Matematika', 'Novan', 'novan@gmail.com', 'Siswa', '$2b$10$PiM9kdGE2ocqVu.1Z6KLxumGZL0t36el3OeCeIoNpEH3MR5hP2AG.', '0857123213', NULL, 'Bengkong sadai', 'http://sifodsinterflour.my.id/api/uploads/novan@gmail.com.png'),
 (5, 'Belum disetel', 'Admin', 'admin', 'Admin', '$2b$10$SAvjmp9DzNtIdDQxcXiVyuDrP7FMHYV2N0VrzXWD/Jtp/HA9hF.kW', 'Belum disetel', NULL, 'Belum disetel', 'default'),
-(6, 'Ilmu Komputer', 'Guru gembul', 'gembul@gmail.com', 'Guru', '$2b$10$N5ft8aSPz3Pb/MHnYXlB9OYeADHpsRKcTC3A7tHGg4VO9wC4/2sfe', '086732133', NULL, 'Bengkong', 'http://127.0.0.1:3000/guruku/uploads/gembul@gmail.com.png'),
-(7, 'Ilmu Komputer', 'Saprul', 'novan2@gmail.com', 'Siswa', '$2b$10$3LUSYavKlvkmUUkd4N9x9edaUEN7gwV0PGdejFFmv4CSNqo4Ywh8S', 'Belum disetel', NULL, 'Belum disetel', 'http://127.0.0.1:3000/guruku/uploads/novan2@gmail.com.png'),
+(6, 'Ilmu Komputer', 'Guru gembul', 'gembul@gmail.com', 'Guru', '$2b$10$N5ft8aSPz3Pb/MHnYXlB9OYeADHpsRKcTC3A7tHGg4VO9wC4/2sfe', '086732133', NULL, 'Bengkong', 'http://sifodsinterflour.my.id/api/uploads/gembul@gmail.com.png'),
+(7, 'Ilmu Komputer', 'Saprul', 'novan2@gmail.com', 'Siswa', '$2b$10$3LUSYavKlvkmUUkd4N9x9edaUEN7gwV0PGdejFFmv4CSNqo4Ywh8S', 'Belum disetel', NULL, 'Belum disetel', 'http://sifodsinterflour.my.id/api/uploads/novan2@gmail.com.png'),
 (8, 'Belum disetel', 'Guru metal', 'guru666@gmail.com', 'Guru', '$2b$10$ajUIeSoUrJER3svD/QvItupS00gk7eQg1SXnSdMBMedIYMSQEqzDa', 'Belum disetel', NULL, 'Belum disetel', 'default');
 
 --

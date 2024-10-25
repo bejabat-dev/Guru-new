@@ -123,19 +123,14 @@ class _LoginState extends State<Login> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Text('Belum punya akun? '),
                         InkWell(
                           onTap: () {
                             utils.Navigate(context, const Register());
                           },
                           child: styles.linkText('Buat akun'),
                         ),
-                        const Text(' atau '),
-                        InkWell(
-                          onTap: () {
-                            utils.Navigate(context, const Forgot());
-                          },
-                          child: styles.linkText('Lupa kata sandi'),
-                        )
+                      
                       ],
                     )
                   ],

@@ -9,7 +9,7 @@ final style = Styles();
 class Tools {
   bool isValidEmail(String email) {
     bool B;
-    final emailRegExp = RegExp(r'^[\w-\.]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$');
+    final emailRegExp = RegExp(r'^[\w-.]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$');
     if (email == 'admin' || emailRegExp.hasMatch(email)) {
       B = true;
     } else {

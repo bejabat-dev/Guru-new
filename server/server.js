@@ -11,7 +11,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-app.use('/guruku/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -38,7 +38,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-const baseUrl = 'http://127.0.0.1:3000/guruku';
+const baseUrl = 'http://sifodsinterflour.my.id/api';
 
 router.post('/upload/foto', upload.single('image'), async (req, res) => {
   if (!req.file) {
@@ -343,9 +343,10 @@ router.get('/kategori', async (req, res) => {
 
 router.get('/list_kategori', async (req, res) => {
   const { mapel } = req.body;
-  const query = 'SELECT * FROM users WHERE mata_pelajaran = ?';
+  const guru = 'Guru';
+  const query = 'SELECT * FROM users WHERE mata_pelajaran = ? AND role = ?';
   try {
-    const [rows] = await db.query(query, [mapel]);
+    const [rows] = await db.query(query, [mapel,guru]);
     res.status(200).json(rows);
   } catch (err) {
     console.error(err);
@@ -388,7 +389,7 @@ router.post('/guru/delete', async (req, res) => {
 
 
 
-app.use('/guruku', router);
+app.use('/api', router);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
