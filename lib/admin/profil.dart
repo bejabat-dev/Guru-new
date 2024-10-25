@@ -68,7 +68,7 @@ class _ProfilGuruState extends State<ProfilAdmin> {
                         padding: EdgeInsets.only(right: 5.0),
                         child: Icon(Icons.person),
                       ),
-                      const Expanded(child: Text('Jabatan')),
+                      const Expanded(child: Text('Terdaftar sebagai')),
                       Text(data['role'])
                     ],
                   ),
